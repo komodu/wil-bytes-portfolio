@@ -1,12 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { useState } from "react";
+import heroProfile from "@/assets/hero-profile.jpg";
 import projectDashboard from "@/assets/project-dashboard.jpg";
 import projectApi from "@/assets/project-api.jpg";
 import projectLinux from "@/assets/project-linux.jpg";
 
 const Index = () => {
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  
   const skills = [
     "Python", "SQL", "Go Language", "JavaScript",
     "Linux (CentOS, Ubuntu)", "API Integration",
@@ -79,6 +84,15 @@ const Index = () => {
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center space-y-6 animate-fade-in">
+            <div className="flex justify-center mb-8">
+              <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary shadow-[var(--shadow-glow)]">
+                <img 
+                  src={heroProfile} 
+                  alt="Wil Lorenz Dagli"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
             <h1 className="text-5xl md:text-7xl font-bold">
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Wil Lorenz Dagli
@@ -124,40 +138,66 @@ const Index = () => {
             Featured Projects
           </h2>
           
-          <div className="space-y-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <Card 
                 key={index}
-                className="overflow-hidden bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-[1.02]"
+                className="overflow-hidden bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 cursor-pointer"
+                onClick={() => setSelectedProject(project)}
               >
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="relative h-64 md:h-full overflow-hidden">
-                    <img 
-                      src={project.image} 
-                      alt={project.name}
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-8 flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">{project.name}</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-6">{project.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <Badge 
-                          key={techIndex}
-                          className="bg-primary/10 text-primary border-primary/20"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.name}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-foreground mb-2">{project.name}</h3>
+                  <p className="text-muted-foreground text-sm line-clamp-2">{project.description}</p>
                 </div>
               </Card>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Project Modal */}
+      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+        <DialogContent className="max-w-3xl bg-card border-border">
+          {selectedProject && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  {selectedProject.name}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
+                <div className="relative h-64 rounded-lg overflow-hidden">
+                  <img 
+                    src={selectedProject.image} 
+                    alt={selectedProject.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  {selectedProject.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.technologies.map((tech, techIndex) => (
+                    <Badge 
+                      key={techIndex}
+                      className="bg-primary/10 text-primary border-primary/20"
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Experience Section */}
       <section id="experience" className="py-20 px-6 bg-card/50">
@@ -294,57 +334,52 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-card/50">
+      {/* Footer / Contact Section */}
+      <footer id="contact" className="py-16 px-6 bg-card/50 border-t border-border">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Get In Touch
           </h2>
           
-          <Card className="p-8 bg-card border-border max-w-2xl mx-auto">
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
-                  <a href="mailto:willdagli@gmail.com" className="text-foreground hover:text-primary transition-colors">
-                    willdagli@gmail.com
-                  </a>
-                </div>
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="flex flex-col items-center text-center space-y-3">
+              <div className="p-4 bg-primary/10 rounded-lg">
+                <Mail className="h-8 w-8 text-primary" />
               </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Phone</p>
-                  <a href="tel:+639925816197" className="text-foreground hover:text-primary transition-colors">
-                    +639-92-581-6197
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="text-foreground">Batangas City 4200, Philippines</p>
-                </div>
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">Email</p>
+                <a href="mailto:willdagli@gmail.com" className="text-foreground hover:text-primary transition-colors font-medium">
+                  willdagli@gmail.com
+                </a>
               </div>
             </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-border">
-        <div className="container mx-auto max-w-6xl text-center text-muted-foreground">
-          <p>© 2025 Wil Lorenz Dagli. All rights reserved.</p>
+            
+            <div className="flex flex-col items-center text-center space-y-3">
+              <div className="p-4 bg-primary/10 rounded-lg">
+                <Phone className="h-8 w-8 text-primary" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">Phone</p>
+                <a href="tel:+639925816197" className="text-foreground hover:text-primary transition-colors font-medium">
+                  +639-92-581-6197
+                </a>
+              </div>
+            </div>
+            
+            <div className="flex flex-col items-center text-center space-y-3">
+              <div className="p-4 bg-primary/10 rounded-lg">
+                <MapPin className="h-8 w-8 text-primary" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">Location</p>
+                <p className="text-foreground font-medium">Batangas City 4200, Philippines</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center pt-8 border-t border-border">
+            <p className="text-muted-foreground">© 2025 Wil Lorenz Dagli. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>
