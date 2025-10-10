@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
+import projectDashboard from "@/assets/project-dashboard.jpg";
+import projectApi from "@/assets/project-api.jpg";
+import projectLinux from "@/assets/project-linux.jpg";
 
 const Index = () => {
   const skills = [
@@ -31,6 +34,27 @@ const Index = () => {
     }
   ];
 
+  const projects = [
+    {
+      name: "Customer Support Dashboard",
+      description: "Developed a comprehensive CRM integration dashboard using Zoho Desk API, enabling automated ticket creation and real-time customer support management. Built with Go backend and responsive frontend.",
+      image: projectDashboard,
+      technologies: ["Go", "Zoho API", "JavaScript", "HTML/CSS"]
+    },
+    {
+      name: "Multi-Service API Gateway",
+      description: "Created a unified API gateway integrating multiple third-party services including Twilio SMS and various communication platforms. Handles request routing, authentication, and rate limiting.",
+      image: projectApi,
+      technologies: ["Go", "Twilio", "REST APIs", "Docker"]
+    },
+    {
+      name: "Linux Server Management System",
+      description: "Built an automated server management and monitoring solution for Linux-based systems. Features include Apache server configuration, Docker container orchestration, and system health monitoring.",
+      image: projectLinux,
+      technologies: ["Linux", "Apache", "Docker", "Shell Scripts"]
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -42,6 +66,7 @@ const Index = () => {
           <div className="hidden md:flex gap-6">
             <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
             <a href="#experience" className="text-foreground hover:text-primary transition-colors">Experience</a>
+            <a href="#projects" className="text-foreground hover:text-primary transition-colors">Projects</a>
             <a href="#skills" className="text-foreground hover:text-primary transition-colors">Skills</a>
             <a href="#education" className="text-foreground hover:text-primary transition-colors">Education</a>
             <a href="#services" className="text-foreground hover:text-primary transition-colors">Services</a>
@@ -92,8 +117,50 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Featured Projects
+          </h2>
+          
+          <div className="space-y-8">
+            {projects.map((project, index) => (
+              <Card 
+                key={index}
+                className="overflow-hidden bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-[1.02]"
+              >
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="relative h-64 md:h-full overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.name}
+                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-8 flex flex-col justify-center">
+                    <h3 className="text-2xl font-bold text-foreground mb-4">{project.name}</h3>
+                    <p className="text-muted-foreground leading-relaxed mb-6">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, techIndex) => (
+                        <Badge 
+                          key={techIndex}
+                          className="bg-primary/10 text-primary border-primary/20"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Experience Section */}
-      <section id="experience" className="py-20 px-6">
+      <section id="experience" className="py-20 px-6 bg-card/50">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Work Experience
@@ -146,7 +213,7 @@ const Index = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 bg-card/50">
+      <section id="skills" className="py-20 px-6">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Skills & Technologies
@@ -185,7 +252,7 @@ const Index = () => {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-20 px-6">
+      <section id="education" className="py-20 px-6 bg-card/50">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Education
@@ -207,7 +274,7 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-6 bg-card/50">
+      <section id="services" className="py-20 px-6">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Services
@@ -228,7 +295,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6">
+      <section id="contact" className="py-20 px-6 bg-card/50">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Get In Touch
