@@ -116,6 +116,7 @@ const Index = () => {
                   src={heroProfile} 
                   alt="Wil Lorenz Dagli"
                   className="w-full h-full object-cover"
+                 
                 />
               </div>
             </div>
@@ -150,9 +151,7 @@ const Index = () => {
             About Me
           </h2>
           <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed">
-            Seeking a thrilling and challenging career in IT industry, to advance my knowledge in the competitive field, 
-            where I can contribute and serve my company with the best of my capabilities and skills at the same time, 
-            improve my expertise and abilities.
+            Resourceful Software Developer (Backend) with experience in Go, JavaScript, and Linux systems. Skilled in API integrations, server management, and automation tools such as n8n, Zapier, and Make.com. Hands-on with Docker, Apache, and CRM integrations (Zoho, Twilio). Combines strong debugging, cybersecurity awareness, and problem-solving skills to deliver efficient, reliable systems.
           </p>
         </div>
       </section>
