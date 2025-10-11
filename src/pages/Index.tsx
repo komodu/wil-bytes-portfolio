@@ -4,11 +4,19 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
-import heroProfile from "@/assets/hero-profile.jpg";
-import projectDashboard from "@/assets/project-dashboard.jpg";
-import projectApi from "@/assets/project-api.jpg";
-import projectLinux from "@/assets/project-linux.jpg";
+import heroProfile from "@/assets/hero-profile.jpeg";
 
+// Make Projects
+import projectMake1 from "@/assets/projects/make/mproject1.png";
+import projectMake2 from "@/assets/projects/make/mproject2.png";
+
+// Zapier Projects
+import projectZapier1 from "@/assets/projects/zapier/zproject1.png";
+import projectZapier2 from "@/assets/projects/zapier/zproject2.png";
+
+// n8n Projects
+import projectn8n1 from "@/assets/projects/n8n/nproject1.png";
+import projectn8n2 from "@/assets/projects/n8n/nproject2.png";
 const Index = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   
@@ -41,22 +49,40 @@ const Index = () => {
 
   const projects = [
     {
-      name: "Customer Support Dashboard",
-      description: "Developed a comprehensive CRM integration dashboard using Zoho Desk API, enabling automated ticket creation and real-time customer support management. Built with Go backend and responsive frontend.",
-      image: projectDashboard,
-      technologies: ["Go", "Zoho API", "JavaScript", "HTML/CSS"]
+      name: "Auto Sort Attachment to Google Drive",
+      description: "Developed an automated workflow in Make.com that intelligently processes incoming email attachments, analyzes their contents, and dynamically renames and sorts files into organized Google Drive folders. The system uses content-based logic to identify key details such as document type, sender, or date, ensuring accurate naming and storage. This automation significantly reduced manual file handling, improved data organization, and increased overall efficiency in managing digital documents.",
+      image: projectMake1,
+      technologies: ["Make", "JavaScript"]
     },
     {
-      name: "Multi-Service API Gateway",
-      description: "Created a unified API gateway integrating multiple third-party services including Twilio SMS and various communication platforms. Handles request routing, authentication, and rate limiting.",
-      image: projectApi,
-      technologies: ["Go", "Twilio", "REST APIs", "Docker"]
+      name: "Xero-to-Google Sheets Financial Data Automation",
+      description: "Created an automated workflow that exports account transactions from Xero, syncs the data in real time to Google Sheets for tracking and analysis, and simultaneously saves a CSV copy to Asana for team reference and task management. This integration streamlined financial reporting, improved data accessibility across departments, and eliminated repetitive manual exports, ensuring accurate and up-to-date financial records.",
+      image: projectMake2,
+      technologies: ["Make", "Xero", "Google Sheets"]
     },
     {
-      name: "Linux Server Management System",
-      description: "Built an automated server management and monitoring solution for Linux-based systems. Features include Apache server configuration, Docker container orchestration, and system health monitoring.",
-      image: projectLinux,
-      technologies: ["Linux", "Apache", "Docker", "Shell Scripts"]
+      name: "AI-Powered Video-to-Blog Content Automation",
+      description: "Developed an intelligent Zapier automation that generates social media blog posts directly from MP4 files stored in Google Drive. The workflow leverages Zapier AI to transcribe video content, then automatically creates an engaging blog title and post based on the extracted text. This end-to-end automation streamlines content creation, reduces manual effort, and enables consistent, AI-driven publishing across social platforms.",
+      image: projectZapier1,
+      technologies: ["Zapier", "Google Drive", "Artificial Intelligence", "Social Media" ]
+    },
+    {
+      name: "Automated Customer Status and Payment Notification System (Asana–Gmail Integration)",
+      description: "Developed a Zapier automation that connects Asana with Gmail to automate customer status and payment notifications. The workflow tracks each customer’s journey in Asana—from initial engagement up to product payment and closure—and uses conditional logic to trigger personalized email updates whenever a status changes. This system streamlined customer communication, ensured timely updates, and minimized manual follow-ups throughout the sales process.",
+      image: projectZapier2,
+      technologies: ["Asana", "Zapier", "Google Mail"]
+    },
+    {
+      name: "Google Forms Data Integration and Archiving Automation (n8n Workflow)",
+      description: "Created an automated data pipeline that connects Google Forms, Google Sheets, Airtable, and a MySQL database using n8n. When a form is submitted, the workflow automatically records the responses in Google Sheets, processes the data through n8n, and seamlessly adds entries to Airtable for active tracking while archiving them in MySQL for long-term storage. This automation improved data consistency, eliminated manual entry, and ensured a reliable, centralized record management process.",
+      image: projectn8n1,
+      technologies: ["n8n", "Airtable", "Google Sheet", "Google Forms", "MySQL"]
+    },
+{
+      name: "AI-Powered Daily Weather Forecast Content Automation",
+      description: "Developed an AI-driven automation that generates and publishes daily weather forecast content for social media. The workflow automatically retrieves weather data, uses AI to create engaging captions and pair them with unique daily quotes and images, and checks whether the selected quote or image has been previously used to avoid repetition. Once validated, it composes and generates the final image post ready for publication. This automation streamlined daily content creation, ensured originality, and maintained consistent social media engagement.",
+      image: projectn8n2,
+      technologies: ["Open Weather Map Application Protocol Interface (API)", "Artificial Intelligence", "n8n", ]
     }
   ];
 
@@ -99,7 +125,7 @@ const Index = () => {
               </span>
             </h1>
             <p className="text-2xl md:text-3xl text-muted-foreground">
-              Software Developer
+              AI Automation Specialist
             </p>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Backend Developer specializing in Go, Linux systems, API integrations, and automation. 
@@ -274,17 +300,41 @@ const Index = () => {
             <Card className="p-6 bg-card border-border">
               <h3 className="text-xl font-bold text-primary mb-4">Technical Skills</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li>• Critical Thinking / Analytical Skills</li>
+                <ul className="space-x-5 space-y-2 text-muted-foreground">
+                    <li>- <strong>Automation & Integration</strong></li>
+                    <li>• Workflow Automation: Zapier, Make.com, n8n</li>
+                    <li>• AI Tools: ChatGPT, Gemini, Otter.ai, Lovable, Grok</li>
+                    <li>• CRM & API Integrations: Zoho Desk, Twilio SMS, GoHighLevel</li>
+                </ul>
+                <ul className="space-x-5 space-y-2 text-muted-foreground">
+                    <li>- <strong>Programming & Development</strong></li>
+                    <li>• Go (Golang), JavaScript, Python, SQL</li>
+                    <li>• HTML, CSS, API Development & Integration</li>
+                    <li>• RESTful APIs, JSON handling, Web Automation</li>
+                </ul>
+                <ul className="space-x-5 space-y-2 text-muted-foreground">
+                    <li>- <strong>Backend & Systems</strong></li>
+                    <li>• Linux Administration (Ubuntu, CentOS)</li>
+                    <li>• Docker & Containerized Environments</li>
+                    <li>• Server Monitoring, Debugging & Optimization</li>
+                </ul>
+                {/* <li>• Critical Thinking / Analytical Skills</li>
                 <li>• Problem Solver</li>
-                <li>• Attention to Details</li>
+                <li>• Attention to Details</li> */}
               </ul>
             </Card>
             <Card className="p-6 bg-card border-border">
               <h3 className="text-xl font-bold text-secondary mb-4">Soft Skills</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li>• Communication Skills</li>
-                <li>• Willingness to Learn</li>
-                <li>• Team Collaboration</li>
+                <li>• Analytical & Critical Thinking</li>
+                <li>• Strong Problem-Solving Abilities</li>
+                <li>• Attention to Detail</li>
+                <li>• Effective Communication</li>
+                <li>• Team Collaboration & Adaptability</li>
+                <li>• Fast Learner / Willingness to Learn</li>
+                <li>• Attention to Detail</li>
+                <li>• Time Management & Accountability</li>
+                <li>• Initiative & Continuous Improvement Mindset</li>
               </ul>
             </Card>
           </div>
