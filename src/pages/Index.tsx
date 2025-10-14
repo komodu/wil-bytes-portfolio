@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import heroProfile from "@/assets/hero-profile.jpeg";
 
@@ -453,7 +453,7 @@ Passionate about building robust, scalable, and fully automated solutions that o
             Get In Touch
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="flex flex-col items-center text-center space-y-3">
               <div className="p-4 bg-primary/10 rounded-lg">
                 <Mail className="h-8 w-8 text-primary" />
@@ -466,19 +466,23 @@ Passionate about building robust, scalable, and fully automated solutions that o
               </div>
             </div>
             
-            <div className="flex flex-col items-center text-center space-y-3">
-              <div className="p-4 bg-primary/10 rounded-lg">
-                <Phone className="h-8 w-8 text-primary" />
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground mb-1">Phone</p>
-                <a href="tel:+639925816197" className="text-foreground hover:text-primary transition-colors font-medium">
-                  +639-92-581-6197
-                </a>
-              </div>
-            </div>
-            
-            <div className="flex flex-col items-center text-center space-y-3">
+<div className="flex flex-col items-center text-center space-y-3">
+  <div className="p-4 bg-primary/10 rounded-lg">
+    <MessageCircle className="h-8 w-8 text-primary" />
+  </div>
+  <div>
+    <p className="text-sm text-muted-foreground mb-1">WhatsApp</p>
+    <a
+      href="https://wa.me/639925816197"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-foreground hover:text-primary transition-colors font-medium"
+    >
+      +639-92-581-6197
+    </a>
+  </div>
+</div>
+            {/* <div className="flex flex-col items-center text-center space-y-3">
               <div className="p-4 bg-primary/10 rounded-lg">
                 <MapPin className="h-8 w-8 text-primary" />
               </div>
@@ -486,7 +490,7 @@ Passionate about building robust, scalable, and fully automated solutions that o
                 <p className="text-sm text-muted-foreground mb-1">Location</p>
                 <p className="text-foreground font-medium">Batangas City 4200, Philippines</p>
               </div>
-            </div>
+            </div> */}
           </div>
           
           <div className="text-center pt-8 border-t border-border">
