@@ -17,33 +17,79 @@ import projectZapier2 from "@/assets/projects/zapier/zproject2.png";
 // n8n Projects
 import projectn8n1 from "@/assets/projects/n8n/nproject1.png";
 import projectn8n2 from "@/assets/projects/n8n/nproject2.png";
+
+
 const Index = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
-  
-  const skills = [
-    "Python", "SQL", "Go Language", "JavaScript",
-    "Linux (CentOS, Ubuntu)", "API Integration",
-    "CRM Management", "Docker", "Apache",
-    "Zapier", "Make.com", "n8n",
-    "ChatGPT", "Gemini"
-  ];
+
+  // ✅ Smooth scroll handler
+  const scrollToSection = (id: string) => {
+  const element = document.getElementById(id);
+  if (!element) return;
+
+  element.scrollIntoView({ behavior: "smooth" });
+
+  // Fix GH Pages trailing slash handling
+  let path = window.location.pathname;
+  if (path.endsWith("/")) {
+    path = path.slice(0, -1); // remove trailing slash
+  }
+
+  const newUrl = `${window.location.origin}${path}#${id}`;
+  window.history.replaceState(null, "", newUrl);
+};
+
+const skills = [
+  // 🔹 Automation & Tools
+  { name: "Make", img: "https://cdn.worldvectorlogo.com/logos/make-logo-rgb-3.svg" },
+  { name: "n8n", img: "https://n8n.io/favicon-32x32.png" },
+  { name: "Zapier", img: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg" },
+  { name: "Slack", img: "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg" },
+  { name: "Airtable", img: "https://cdn.worldvectorlogo.com/logos/airtable-1.svg" },
+  { name: "Asana", img: "https://cdn.worldvectorlogo.com/logos/asana-1.svg" },
+  { name: "Otter.ai", img: "https://assets.otter.ai/favicon.ico" },
+  { name: "Twilio", img: "https://cdn.worldvectorlogo.com/logos/twilio-2.svg" },
+  { name: "GoHighLevel", img: "https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/48175265739/original/PAUWak17_5otrZlX-2umd5Eisu-X_cq0fw.jpg?1641235578" },
+
+  // 🔹 Programming & Systems
+  { name: "JavaScript", img: "https://skillicons.dev/icons?i=js" },
+  { name: "Python", img: "https://skillicons.dev/icons?i=python" },
+  { name: "Linux", img: "https://skillicons.dev/icons?i=linux" },
+  { name: "MySQL", img: "https://skillicons.dev/icons?i=mysql" },
+  { name: "API Integration", img: "https://www.svgrepo.com/show/88703/api.svg" },
+  { name: "Go Language", img: "https://skillicons.dev/icons?i=go" },
+
+  // 🔹 Infrastructure
+  { name: "Docker", img: "https://skillicons.dev/icons?i=docker" },
+//   { name: "Apache", img: "https://skillicons.dev/icons?i=apache" },
+
+  // 🔹 AI Tools
+  { name: "ChatGPT", img: "https://cdn.worldvectorlogo.com/logos/openai-2.svg" },
+  { name: "Gemini", img: "https://registry.npmmirror.com/@lobehub/icons-static-png/1.74.0/files/dark/gemini-color.png" },
+  { name: "Grok", img: "https://images.seeklogo.com/logo-png/50/1/grok-logo-png_seeklogo-506012.png" }
+];
+
 
   const services = [
     {
-      title: "Backend Development",
-      description: "Building robust server-side applications with Go, managing APIs, and system optimization"
+      title: "Chatbot Setup",
+      description: "Automate conversations on Chat Applications, or websites with smart chatbots that capture leads."
     },
     {
-      title: "Linux System Administration",
-      description: "Server maintenance, debugging, and optimization on CentOS and Ubuntu platforms"
+      title: "CRM Management",
+      description: "Streamline customer relationships with automated CRM workflows, integrations, and optimized data management."
+    },
+    // {
+    //   title: "API Integration",
+    //   description: "Seamless integration of third-party services including Twilio, Zoho, and custom APIs"
+    // },
+    {
+        title:"Wordpress Website",
+        description: "Build and maintain dynamic, automation-ready WordPress websites tailored for performance, scalability, and business growth."
     },
     {
-      title: "API Integration",
-      description: "Seamless integration of third-party services including Twilio, Zoho, and custom APIs"
-    },
-    {
-      title: "Automation & AI Tools",
-      description: "Workflow automation using Zapier, Make.com, n8n, and AI-powered solutions"
+      title: "No Code Automation",
+      description: "WWorkflow automation using Zapier, Make.com, n8n, and AI-powered solutions to eliminate repetitive tasks and boost efficiency."
     }
   ];
 
@@ -87,59 +133,49 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
+   <div className="min-h-screen bg-background">
+      {/* ✅ Navigation */}
       <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Wil
           </div>
           <div className="hidden md:flex gap-6">
-            <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
-            <a href="#experience" className="text-foreground hover:text-primary transition-colors">Experience</a>
-            <a href="#projects" className="text-foreground hover:text-primary transition-colors">Projects</a>
-            <a href="#skills" className="text-foreground hover:text-primary transition-colors">Skills</a>
-            <a href="#education" className="text-foreground hover:text-primary transition-colors">Education</a>
-            <a href="#services" className="text-foreground hover:text-primary transition-colors">Services</a>
-            <a href="#contact" className="text-foreground hover:text-primary transition-colors">Contact</a>
+            <button onClick={() => scrollToSection("about")} className="text-foreground hover:text-primary transition-colors">About</button>
+            {/* <button onClick={() => scrollToSection("experience")} className="text-foreground hover:text-primary transition-colors">Experience</button> */}
+            <button onClick={() => scrollToSection("projects")} className="text-foreground hover:text-primary transition-colors">Projects</button>
+            <button onClick={() => scrollToSection("skills")} className="text-foreground hover:text-primary transition-colors">Skills</button>
+            {/* <button onClick={() => scrollToSection("education")} className="text-foreground hover:text-primary transition-colors">Education</button> */}
+            <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">Services</button>
+            <button onClick={() => scrollToSection("contact")} className="text-foreground hover:text-primary transition-colors">Contact</button>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* ✅ Hero Section */}
       <section className="pt-32 pb-20 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center space-y-6 animate-fade-in">
-            <div className="flex justify-center mb-8">
-              <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary shadow-[var(--shadow-glow)]">
-                <img 
-                  src={heroProfile} 
-                  alt="Wil Lorenz Dagli"
-                  className="w-full h-full object-cover"
-                 
-                />
-              </div>
+        <div className="container mx-auto max-w-6xl text-center space-y-6">
+          <div className="flex justify-center mb-8">
+            <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary shadow-[var(--shadow-glow)]">
+              <img src={heroProfile} alt="Wil Lorenz Dagli" className="w-full h-full object-cover" />
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold">
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Wil Lorenz Dagli
-              </span>
-            </h1>
-            <p className="text-2xl md:text-3xl text-muted-foreground">
-              AI Automation Specialist
-            </p>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Backend Developer specializing in Go, Linux systems, API integrations, and automation. 
-              Passionate about building robust, scalable solutions.
-            </p>
-            <div className="flex gap-4 justify-center pt-4">
-              <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90">
-                <a href="#contact">Get in Touch</a>
-              </Button>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10">
-                <a href="#experience">View Work</a>
-              </Button>
-            </div>
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Wil Lorenz Dagli
+          </h1>
+          <p className="text-2xl md:text-3xl text-muted-foreground">Technical Virtual Assistant - AI Automation</p>
+          {/* <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+         Experienced in Go, Linux systems, and API integrations.
+Passionate about building robust, scalable, and fully automated solutions that optimize workflows and system performance.
+            Passionate about building robust, scalable, and fully automated solutions that optimize workflows and system performance.
+          </p> */}
+          <div className="flex gap-4 justify-center pt-4">
+            <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90" onClick={() => scrollToSection("contact")}>
+              Get in Touch
+            </Button>
+            <Button variant="outline" className="border-primary text-primary hover:bg-primary/10" onClick={() => scrollToSection("experience")}>
+              View Work
+            </Button>
           </div>
         </div>
       </section>
@@ -151,11 +187,104 @@ const Index = () => {
             About Me
           </h2>
           <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed">
-            Resourceful Software Developer (Backend) with experience in Go, JavaScript, and Linux systems. Skilled in API integrations, server management, and automation tools such as n8n, Zapier, and Make.com. Hands-on with Docker, Apache, and CRM integrations (Zoho, Twilio). Combines strong debugging, cybersecurity awareness, and problem-solving skills to deliver efficient, reliable systems.
+            I specialize in automating workflows, managing web systems, and providing technical support for digital operations. My expertise includes integrating tools like n8n, Zapier, Make, CRM and Google Workspace to streamline business processes, manage data efficiently, and enhance productivity. I also assist in maintaining websites, handling API connections, and implementing automation for daily operations. 
+            With a background in backend development, I specialize in diagnosing, debugging, and optimizing server-side logic, databases, and APIs ensuring systems remain secure, efficient, and scalable for clients.
           </p>
         </div>
       </section>
+ {/* Skills Section */}
+      <section id="skills" className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Skills & Language / Tools Used
+          </h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+{skills.map((skill, index) => (
+  <Card
+    key={index}
+    className="p-6 bg-card border-border hover:border-primary transition-all duration-300 hover:shadow-[var(--shadow-glow)] cursor-default text-center flex flex-col items-center justify-center gap-3 hover:scale-105"
+  >
+    <div className="w-16 h-16 rounded-xl bg-white/10 dark:bg-white/20 flex items-center justify-center">
+      <img
+        src={skill.img}
+        alt={skill.name}
+        className="w-12 h-12 object-contain"
+      />
+    </div>
+    <p className="text-foreground font-medium text-base mt-1">{skill.name}</p>
+  </Card>
+))}
 
+          </div>
+
+          <div className="mt-12 grid md:grid-cols-2 gap-6">
+            <Card className="p-6 bg-card border-border">
+              <h3 className="text-xl font-bold text-primary mb-4">Technical Skills</h3>
+              <ul className="space-y-2 text-muted-foreground">
+                <ul className="space-x-5 space-y-2 text-muted-foreground">
+                    <li>- <strong>Automation & Integration</strong></li>
+                    <li>• Workflow Automation: Zapier, Make.com, n8n</li>
+                    <li>• AI Tools: ChatGPT, Gemini, Otter.ai, Lovable, Grok</li>
+                    <li>• CRM & API Integrations: Zoho Desk, Twilio SMS, GoHighLevel</li>
+                </ul>
+                <ul className="space-x-5 space-y-2 text-muted-foreground">
+                    <li>- <strong>Programming & Development</strong></li>
+                    <li>• Go (Golang), JavaScript, Python, SQL</li>
+                    <li>• HTML, CSS, API Development & Integration</li>
+                    <li>• RESTful APIs, JSON handling, Web Automation</li>
+                </ul>
+                <ul className="space-x-5 space-y-2 text-muted-foreground">
+                    <li>- <strong>Backend & Systems</strong></li>
+                    <li>• Linux Administration (Ubuntu, CentOS)</li>
+                    <li>• Docker & Containerized Environments</li>
+                    <li>• Server Monitoring, Debugging & Optimization</li>
+                </ul>
+                {/* <li>• Critical Thinking / Analytical Skills</li>
+                <li>• Problem Solver</li>
+                <li>• Attention to Details</li> */}
+              </ul>
+            </Card>
+            <Card className="p-6 bg-card border-border">
+              <h3 className="text-xl font-bold text-secondary mb-4">Soft Skills</h3>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>• Analytical & Critical Thinking</li>
+                <li>• Strong Problem-Solving Abilities</li>
+                <li>• Attention to Detail</li>
+                <li>• Effective Communication</li>
+                <li>• Team Collaboration & Adaptability</li>
+                <li>• Fast Learner / Willingness to Learn</li>
+                <li>• Attention to Detail</li>
+                <li>• Time Management & Accountability</li>
+                <li>• Initiative & Continuous Improvement Mindset</li>
+              </ul>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Services
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {services.map((service, index) => (
+              <Card 
+                key={index}
+                className="p-8 bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105"
+              >
+                <h3 className="text-2xl font-bold text-foreground mb-4">{service.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      
       {/* Projects Section */}
       <section id="projects" className="py-20 px-6">
         <div className="container mx-auto max-w-6xl">
@@ -225,14 +354,14 @@ const Index = () => {
       </Dialog>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 px-6 bg-card/50">
+      {/* <section id="experience" className="py-20 px-6 bg-card/50">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Work Experience
           </h2>
           
           <div className="space-y-8">
-            {/* IntegrityNet Experience */}
+         
             <Card className="p-8 bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                 <div>
@@ -255,7 +384,7 @@ const Index = () => {
               </ul>
             </Card>
 
-            {/* Internship */}
+            
             <Card className="p-8 bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                 <div>
@@ -275,73 +404,11 @@ const Index = () => {
             </Card>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Skills & Technologies
-          </h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {skills.map((skill, index) => (
-              <Card 
-                key={index}
-                className="p-4 bg-card border-border hover:border-primary transition-all duration-300 hover:shadow-[var(--shadow-glow)] cursor-default text-center"
-              >
-                <p className="text-foreground font-medium">{skill}</p>
-              </Card>
-            ))}
-          </div>
-
-          <div className="mt-12 grid md:grid-cols-2 gap-6">
-            <Card className="p-6 bg-card border-border">
-              <h3 className="text-xl font-bold text-primary mb-4">Technical Skills</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <ul className="space-x-5 space-y-2 text-muted-foreground">
-                    <li>- <strong>Automation & Integration</strong></li>
-                    <li>• Workflow Automation: Zapier, Make.com, n8n</li>
-                    <li>• AI Tools: ChatGPT, Gemini, Otter.ai, Lovable, Grok</li>
-                    <li>• CRM & API Integrations: Zoho Desk, Twilio SMS, GoHighLevel</li>
-                </ul>
-                <ul className="space-x-5 space-y-2 text-muted-foreground">
-                    <li>- <strong>Programming & Development</strong></li>
-                    <li>• Go (Golang), JavaScript, Python, SQL</li>
-                    <li>• HTML, CSS, API Development & Integration</li>
-                    <li>• RESTful APIs, JSON handling, Web Automation</li>
-                </ul>
-                <ul className="space-x-5 space-y-2 text-muted-foreground">
-                    <li>- <strong>Backend & Systems</strong></li>
-                    <li>• Linux Administration (Ubuntu, CentOS)</li>
-                    <li>• Docker & Containerized Environments</li>
-                    <li>• Server Monitoring, Debugging & Optimization</li>
-                </ul>
-                {/* <li>• Critical Thinking / Analytical Skills</li>
-                <li>• Problem Solver</li>
-                <li>• Attention to Details</li> */}
-              </ul>
-            </Card>
-            <Card className="p-6 bg-card border-border">
-              <h3 className="text-xl font-bold text-secondary mb-4">Soft Skills</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• Analytical & Critical Thinking</li>
-                <li>• Strong Problem-Solving Abilities</li>
-                <li>• Attention to Detail</li>
-                <li>• Effective Communication</li>
-                <li>• Team Collaboration & Adaptability</li>
-                <li>• Fast Learner / Willingness to Learn</li>
-                <li>• Attention to Detail</li>
-                <li>• Time Management & Accountability</li>
-                <li>• Initiative & Continuous Improvement Mindset</li>
-              </ul>
-            </Card>
-          </div>
-        </div>
-      </section>
-
+     
       {/* Education Section */}
-      <section id="education" className="py-20 px-6 bg-card/50">
+      {/* <section id="education" className="py-20 px-6 bg-card/50">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Education
@@ -360,28 +427,9 @@ const Index = () => {
             </div>
           </Card>
         </div>
-      </section>
+      </section> */}
 
-      {/* Services Section */}
-      <section id="services" className="py-20 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Services
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {services.map((service, index) => (
-              <Card 
-                key={index}
-                className="p-8 bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105"
-              >
-                <h3 className="text-2xl font-bold text-foreground mb-4">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Footer / Contact Section */}
       <footer id="contact" className="py-16 px-6 bg-card/50 border-t border-border">
