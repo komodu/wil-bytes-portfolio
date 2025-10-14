@@ -250,7 +250,6 @@ Passionate about building robust, scalable, and fully automated solutions that o
               <ul className="space-y-2 text-muted-foreground">
                 <li>• Analytical & Critical Thinking</li>
                 <li>• Strong Problem-Solving Abilities</li>
-                <li>• Attention to Detail</li>
                 <li>• Effective Communication</li>
                 <li>• Team Collaboration & Adaptability</li>
                 <li>• Fast Learner / Willingness to Learn</li>
