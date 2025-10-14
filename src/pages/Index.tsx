@@ -73,22 +73,25 @@ const skills = [
   const services = [
     {
       title: "Chatbot Setup",
+      image: "https://www.svgrepo.com/show/361202/hubot.svg",
       description: "Automate conversations on Chat Applications, or websites with smart chatbots that capture leads."
     },
     {
       title: "CRM Management",
+      image: "https://www.svgrepo.com/show/228786/crm-crm.svg",
       description: "Streamline customer relationships with automated CRM workflows, integrations, and optimized data management."
     },
     // {
     //   title: "API Integration",
     //   description: "Seamless integration of third-party services including Twilio, Zoho, and custom APIs"
     // },
-    {
-        title:"Wordpress Website",
-        description: "Build and maintain dynamic, automation-ready WordPress websites tailored for performance, scalability, and business growth."
-    },
+    // {
+    //     title:"Wordpress Website",
+    //     description: "Build and maintain dynamic, automation-ready WordPress websites tailored for performance, scalability, and business growth."
+    // },
     {
       title: "No Code Automation",
+      image: "https://www.svgrepo.com/show/510384/automation-4p.svg",
       description: "WWorkflow automation using Zapier, Make.com, n8n, and AI-powered solutions to eliminate repetitive tasks and boost efficiency."
     }
   ];
@@ -270,15 +273,28 @@ Passionate about building robust, scalable, and fully automated solutions that o
           </h2>
           
           <div className="grid md:grid-cols-2 gap-6">
-            {services.map((service, index) => (
-              <Card 
-                key={index}
-                className="p-8 bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105"
-              >
-                <h3 className="text-2xl font-bold text-foreground mb-4">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-              </Card>
-            ))}
+{services.map((service, index) => (
+  <Card
+    key={index}
+    className="p-6 bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 flex items-start gap-6"
+  >
+    {/* Icon / Image Section */}
+    <div className="w-16 h-16 rounded-xl bg-white/10 dark:bg-white/20 flex items-center justify-center flex-shrink-0">
+      <img
+        src={service.image}
+        alt={service.title}
+        className="w-10 h-10 object-contain"
+      />
+    </div>
+
+    {/* Text Section */}
+    <div>
+      <h3 className="text-2xl font-bold text-foreground mb-2">{service.title}</h3>
+      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+    </div>
+  </Card>
+))}
+
           </div>
         </div>
       </section>
