@@ -176,7 +176,7 @@ Passionate about building robust, scalable, and fully automated solutions that o
             <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90" onClick={() => scrollToSection("contact")}>
               Get in Touch
             </Button>
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary/10" onClick={() => scrollToSection("experience")}>
+            <Button variant="outline" className="border-primary text-primary hover:bg-primary/10" onClick={() => scrollToSection("projects")}>
               View Work
             </Button>
           </div>
