@@ -1,3 +1,4 @@
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -5,18 +6,24 @@ import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import { Mail, Phone, MapPin, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useForm, ValidationError } from "@formspree/react";
 
 const Contact = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-  };
+  // ✅ Initialize Formspree form (replace with your real form ID)
+  const [state, handleSubmit] = useForm("mdkwyyej");
+
+  // ✅ Show toast when succeeded
+  React.useEffect(() => {
+    if (state.succeeded) {
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+    }
+  }, [state.succeeded, toast]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -24,14 +31,14 @@ const Contact = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <button 
+            <button
               onClick={() => navigate("/")}
               className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-80 transition-opacity"
             >
               Wil
             </button>
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               onClick={() => navigate("/")}
               className="gap-2"
             >
@@ -63,48 +70,64 @@ const Contact = () => {
               <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Send Me a Message
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input 
-                    id="name" 
-                    placeholder="Your name" 
-                    required 
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="your.email@example.com" 
-                    required 
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Subject</Label>
-                  <Input 
-                    id="subject" 
-                    placeholder="What's this about?" 
-                    required 
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="Tell me about your project or inquiry..." 
-                    rows={6}
-                    required 
-                  />
-                </div>
-                <Button 
-                  type="submit" 
-                  className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90"
-                >
-                  Send Message
-                </Button>
-              </form>
+
+              {/* ✅ Formspree Integration */}
+              {state.succeeded ? (
+                <p className="text-center text-primary font-semibold">
+                  ✅ Message sent successfully!
+                </p>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input id="name" name="name" placeholder="Your name" required />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      required
+                    />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="subject">Subject</Label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      placeholder="What's this about?"
+                      required
+                    />
+                    <ValidationError prefix="Subject" field="subject" errors={state.errors} />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Tell me about your project or inquiry..."
+                      rows={6}
+                      required
+                    />
+                    <ValidationError prefix="Message" field="message" errors={state.errors} />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                    disabled={state.submitting}
+                  >
+                    {state.submitting ? "Sending..." : "Send Message"}
+                  </Button>
+                </form>
+              )}
             </div>
 
             {/* Contact Information */}
@@ -125,8 +148,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <a 
-                      href="mailto:willdagli@gmail.com" 
+                    <a
+                      href="mailto:willdagli@gmail.com"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       willdagli@gmail.com
@@ -140,8 +163,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Phone</h3>
-                    <a 
-                      href="tel:+639925816197" 
+                    <a
+                      href="tel:+639925816197"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       +639-92-581-6197
@@ -155,9 +178,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Location</h3>
-                    <p className="text-muted-foreground">
-                      Batangas City 4200, Philippines
-                    </p>
+                    <p className="text-muted-foreground">Batangas City 4200, Philippines</p>
                   </div>
                 </div>
               </div>
