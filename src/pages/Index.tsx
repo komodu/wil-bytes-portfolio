@@ -448,54 +448,23 @@ Passionate about building robust, scalable, and fully automated solutions that o
 
 
 
-      {/* Footer / Contact Section */}
+      {/* Footer */}
       <footer id="contact" className="py-16 px-6 bg-card/50 border-t border-border">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Get In Touch
+        <div className="container mx-auto max-w-6xl text-center">
+          <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Let's Work Together
           </h2>
+          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Have a project in mind or want to discuss opportunities? I'd love to hear from you.
+          </p>
+          <Button 
+            className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 mb-12"
+            onClick={() => navigate("/contact")}
+          >
+            Get in Touch
+          </Button>
           
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="flex flex-col items-center text-center space-y-3">
-              <div className="p-4 bg-primary/10 rounded-lg">
-                <Mail className="h-8 w-8 text-primary" />
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground mb-1">Email</p>
-                <a href="mailto:willdagli@gmail.com" className="text-foreground hover:text-primary transition-colors font-medium">
-                  willdagli@gmail.com
-                </a>
-              </div>
-            </div>
-            
-<div className="flex flex-col items-center text-center space-y-3">
-  <div className="p-4 bg-primary/10 rounded-lg">
-    <MessageCircle className="h-8 w-8 text-primary" />
-  </div>
-  <div>
-    <p className="text-sm text-muted-foreground mb-1">WhatsApp</p>
-    <a
-      href="https://wa.me/639925816197"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-foreground hover:text-primary transition-colors font-medium"
-    >
-      +639-92-581-6197
-    </a>
-  </div>
-</div>
-            {/* <div className="flex flex-col items-center text-center space-y-3">
-              <div className="p-4 bg-primary/10 rounded-lg">
-                <MapPin className="h-8 w-8 text-primary" />
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground mb-1">Location</p>
-                <p className="text-foreground font-medium">Batangas City 4200, Philippines</p>
-              </div>
-            </div> */}
-          </div>
-          
-          <div className="text-center pt-8 border-t border-border">
+          <div className="pt-8 border-t border-border">
             <p className="text-muted-foreground">© 2025 Wil Lorenz Dagli. All rights reserved.</p>
           </div>
         </div>
