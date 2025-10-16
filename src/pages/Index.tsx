@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Mail, MessageCircle } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import heroProfile from "@/assets/hero-profile.jpeg";
 
 // Make Projects
@@ -20,6 +21,7 @@ import projectn8n2 from "@/assets/projects/n8n/nproject2.png";
 
 
 const Index = () => {
+  const navigate = useNavigate();
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
   // ✅ Smooth scroll handler
@@ -150,7 +152,7 @@ const skills = [
             <button onClick={() => scrollToSection("skills")} className="text-foreground hover:text-primary transition-colors">Skills</button>
             {/* <button onClick={() => scrollToSection("education")} className="text-foreground hover:text-primary transition-colors">Education</button> */}
             <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">Services</button>
-            <button onClick={() => scrollToSection("contact")} className="text-foreground hover:text-primary transition-colors">Contact</button>
+            <button onClick={() => navigate("/contact")} className="text-foreground hover:text-primary transition-colors">Contact</button>
           </div>
         </div>
       </nav>
@@ -173,7 +175,7 @@ Passionate about building robust, scalable, and fully automated solutions that o
             Passionate about building robust, scalable, and fully automated solutions that optimize workflows and system performance.
           </p> */}
           <div className="flex gap-4 justify-center pt-4">
-            <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90" onClick={() => scrollToSection("contact")}>
+            <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90" onClick={() => navigate("/contact")}>
               Get in Touch
             </Button>
             <Button variant="outline" className="border-primary text-primary hover:bg-primary/10" onClick={() => scrollToSection("projects")}>
