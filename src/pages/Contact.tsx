@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
-import { Mail, Phone, MapPin, ArrowLeft } from "lucide-react";
+import { Mail, MessageCircle, MapPin, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useForm, ValidationError } from "@formspree/react";
 
@@ -156,21 +156,22 @@ const Contact = () => {
                     </a>
                   </div>
                 </div>
-
-                <div className="flex items-start gap-4 p-4 bg-card/50 rounded-lg border border-border">
-                  <div className="p-3 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">Phone</h3>
-                    <a
-                      href="tel:+639925816197"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      +639-92-581-6197
-                    </a>
-                  </div>
-                </div>
+<div className="flex items-start gap-4 p-4 bg-card/50 rounded-lg border border-border">
+  <div className="p-3 bg-gradient-to-r from-green-400/20 to-green-600/20 rounded-lg">
+    <MessageCircle className="w-6 h-6 text-green-600" />
+  </div>
+  <div>
+    <h3 className="font-semibold mb-1">WhatsApp</h3>
+    <a
+      href="https://wa.me/639925816197"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-muted-foreground hover:text-green-600 transition-colors"
+    >
+      +639-92-581-6197
+    </a>
+  </div>
+</div>
 
                 <div className="flex items-start gap-4 p-4 bg-card/50 rounded-lg border border-border">
                   <div className="p-3 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg">

@@ -1,7 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Mail, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,69 +24,101 @@ import projectZapier2 from "@/assets/projects/zapier/zproject2.png";
 import projectn8n1 from "@/assets/projects/n8n/nproject1.png";
 import projectn8n2 from "@/assets/projects/n8n/nproject2.png";
 
-
 const Index = () => {
   const navigate = useNavigate();
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<
+    (typeof projects)[0] | null
+  >(null);
 
   // ✅ Smooth scroll handler
   const scrollToSection = (id: string) => {
-  const element = document.getElementById(id);
-  if (!element) return;
+    const element = document.getElementById(id);
+    if (!element) return;
 
-  element.scrollIntoView({ behavior: "smooth" });
+    element.scrollIntoView({ behavior: "smooth" });
 
-  // Fix GH Pages trailing slash handling
-  let path = window.location.pathname;
-  if (path.endsWith("/")) {
-    path = path.slice(0, -1); // remove trailing slash
-  }
+    // Fix GH Pages trailing slash handling
+    let path = window.location.pathname;
+    if (path.endsWith("/")) {
+      path = path.slice(0, -1); // remove trailing slash
+    }
 
-  const newUrl = `${window.location.origin}${path}#${id}`;
-  window.history.replaceState(null, "", newUrl);
-};
+    const newUrl = `${window.location.origin}${path}#${id}`;
+    window.history.replaceState(null, "", newUrl);
+  };
 
-const skills = [
-  // 🔹 Automation & Tools
-  { name: "Make", img: "https://cdn.worldvectorlogo.com/logos/make-logo-rgb-3.svg" },
-  { name: "n8n", img: "https://n8n.io/favicon-32x32.png" },
-  { name: "Zapier", img: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg" },
-  { name: "Slack", img: "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg" },
-  { name: "Airtable", img: "https://cdn.worldvectorlogo.com/logos/airtable-1.svg" },
-  { name: "Asana", img: "https://cdn.worldvectorlogo.com/logos/asana-1.svg" },
-  { name: "Otter.ai", img: "https://assets.otter.ai/favicon.ico" },
-  { name: "Twilio", img: "https://cdn.worldvectorlogo.com/logos/twilio-2.svg" },
-  { name: "GoHighLevel", img: "https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/48175265739/original/PAUWak17_5otrZlX-2umd5Eisu-X_cq0fw.jpg?1641235578" },
+  const skills = [
+    // 🔹 Automation & Tools
+    {
+      name: "Make",
+      img: "https://cdn.worldvectorlogo.com/logos/make-logo-rgb-3.svg",
+    },
+    { name: "n8n", img: "https://n8n.io/favicon-32x32.png" },
+    {
+      name: "Zapier",
+      img: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg",
+    },
+    {
+      name: "Slack",
+      img: "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg",
+    },
+    {
+      name: "Airtable",
+      img: "https://cdn.worldvectorlogo.com/logos/airtable-1.svg",
+    },
+    { name: "Asana", img: "https://cdn.worldvectorlogo.com/logos/asana-1.svg" },
+    { name: "Otter.ai", img: "https://assets.otter.ai/favicon.ico" },
+    {
+      name: "Twilio",
+      img: "https://cdn.worldvectorlogo.com/logos/twilio-2.svg",
+    },
+    {
+      name: "GoHighLevel",
+      img: "https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/48175265739/original/PAUWak17_5otrZlX-2umd5Eisu-X_cq0fw.jpg?1641235578",
+    },
 
-  // 🔹 Programming & Systems
-  { name: "JavaScript", img: "https://skillicons.dev/icons?i=js" },
-  { name: "Python", img: "https://skillicons.dev/icons?i=python" },
-  { name: "Linux", img: "https://skillicons.dev/icons?i=linux" },
-  { name: "MySQL", img: "https://skillicons.dev/icons?i=mysql" },
-  { name: "API Integration", img: "https://www.svgrepo.com/show/88703/api.svg" },
-  { name: "Go Language", img: "https://skillicons.dev/icons?i=go" },
+    // 🔹 Programming & Systems
+    { name: "JavaScript", img: "https://skillicons.dev/icons?i=js" },
+    { name: "Python", img: "https://skillicons.dev/icons?i=python" },
+    { name: "Linux", img: "https://skillicons.dev/icons?i=linux" },
+    { name: "MySQL", img: "https://skillicons.dev/icons?i=mysql" },
+    {
+      name: "API Integration",
+      img: "https://www.svgrepo.com/show/88703/api.svg",
+    },
+    { name: "Go Language", img: "https://skillicons.dev/icons?i=go" },
 
-  // 🔹 Infrastructure
-  { name: "Docker", img: "https://skillicons.dev/icons?i=docker" },
-//   { name: "Apache", img: "https://skillicons.dev/icons?i=apache" },
+    // 🔹 Infrastructure
+    { name: "Docker", img: "https://skillicons.dev/icons?i=docker" },
+    //   { name: "Apache", img: "https://skillicons.dev/icons?i=apache" },
 
-  // 🔹 AI Tools
-  { name: "ChatGPT", img: "https://cdn.worldvectorlogo.com/logos/openai-2.svg" },
-  { name: "Gemini", img: "https://registry.npmmirror.com/@lobehub/icons-static-png/1.74.0/files/dark/gemini-color.png" },
-  { name: "Grok", img: "https://images.seeklogo.com/logo-png/50/1/grok-logo-png_seeklogo-506012.png" }
-];
-
+    // 🔹 AI Tools
+    {
+      name: "ChatGPT",
+      img: "https://cdn.worldvectorlogo.com/logos/openai-2.svg",
+    },
+    {
+      name: "Gemini",
+      img: "https://registry.npmmirror.com/@lobehub/icons-static-png/1.74.0/files/dark/gemini-color.png",
+    },
+    {
+      name: "Grok",
+      img: "https://images.seeklogo.com/logo-png/50/1/grok-logo-png_seeklogo-506012.png",
+    },
+  ];
 
   const services = [
     {
       title: "Chatbot Setup",
       image: "https://www.svgrepo.com/show/361202/hubot.svg",
-      description: "Automate conversations on Chat Applications, or websites with smart chatbots that capture leads."
+      description:
+        "Automate conversations on Chat Applications, or websites with smart chatbots that capture leads.",
     },
     {
       title: "CRM Management",
       image: "https://www.svgrepo.com/show/228786/crm-crm.svg",
-      description: "Streamline customer relationships with automated CRM workflows, integrations, and optimized data management."
+      description:
+        "Streamline customer relationships with automated CRM workflows, integrations, and optimized data management.",
     },
     // {
     //   title: "API Integration",
@@ -94,65 +131,121 @@ const skills = [
     {
       title: "No Code Automation",
       image: "https://www.svgrepo.com/show/510384/automation-4p.svg",
-      description: "WWorkflow automation using Zapier, Make.com, n8n, and AI-powered solutions to eliminate repetitive tasks and boost efficiency."
-    }
+      description:
+        "Workflow automation using Zapier, Make.com, n8n, and AI-powered solutions to eliminate repetitive tasks and boost efficiency.",
+    },
   ];
 
   const projects = [
     {
       name: "Auto Sort Attachment to Google Drive",
-      description: "Developed an automated workflow in Make.com that intelligently processes incoming email attachments, analyzes their contents, and dynamically renames and sorts files into organized Google Drive folders. The system uses content-based logic to identify key details such as document type, sender, or date, ensuring accurate naming and storage. This automation significantly reduced manual file handling, improved data organization, and increased overall efficiency in managing digital documents.",
+      description:
+        "Developed an automated workflow in Make.com that intelligently processes incoming email attachments, analyzes their contents, and dynamically renames and sorts files into organized Google Drive folders. The system uses content-based logic to identify key details such as document type, sender, or date, ensuring accurate naming and storage. This automation significantly reduced manual file handling, improved data organization, and increased overall efficiency in managing digital documents.",
       image: projectMake1,
-      technologies: ["Make", "JavaScript"]
+      technologies: ["Make", "JavaScript"],
     },
     {
       name: "Xero-to-Google Sheets Financial Data Automation",
-      description: "Created an automated workflow that exports account transactions from Xero, syncs the data in real time to Google Sheets for tracking and analysis, and simultaneously saves a CSV copy to Asana for team reference and task management. This integration streamlined financial reporting, improved data accessibility across departments, and eliminated repetitive manual exports, ensuring accurate and up-to-date financial records.",
+      description:
+        "Created an automated workflow that exports account transactions from Xero, syncs the data in real time to Google Sheets for tracking and analysis, and simultaneously saves a CSV copy to Asana for team reference and task management. This integration streamlined financial reporting, improved data accessibility across departments, and eliminated repetitive manual exports, ensuring accurate and up-to-date financial records.",
       image: projectMake2,
-      technologies: ["Make", "Xero", "Google Sheets"]
+      technologies: ["Make", "Xero", "Google Sheets"],
     },
     {
       name: "AI-Powered Video-to-Blog Content Automation",
-      description: "Developed an intelligent Zapier automation that generates social media blog posts directly from MP4 files stored in Google Drive. The workflow leverages Zapier AI to transcribe video content, then automatically creates an engaging blog title and post based on the extracted text. This end-to-end automation streamlines content creation, reduces manual effort, and enables consistent, AI-driven publishing across social platforms.",
+      description:
+        "Developed an intelligent Zapier automation that generates social media blog posts directly from MP4 files stored in Google Drive. The workflow leverages Zapier AI to transcribe video content, then automatically creates an engaging blog title and post based on the extracted text. This end-to-end automation streamlines content creation, reduces manual effort, and enables consistent, AI-driven publishing across social platforms.",
       image: projectZapier1,
-      technologies: ["Zapier", "Google Drive", "Artificial Intelligence", "Social Media" ]
+      technologies: [
+        "Zapier",
+        "Google Drive",
+        "Artificial Intelligence",
+        "Social Media",
+      ],
     },
     {
       name: "Automated Customer Status and Payment Notification System (Asana–Gmail Integration)",
-      description: "Developed a Zapier automation that connects Asana with Gmail to automate customer status and payment notifications. The workflow tracks each customer’s journey in Asana—from initial engagement up to product payment and closure—and uses conditional logic to trigger personalized email updates whenever a status changes. This system streamlined customer communication, ensured timely updates, and minimized manual follow-ups throughout the sales process.",
+      description:
+        "Developed a Zapier automation that connects Asana with Gmail to automate customer status and payment notifications. The workflow tracks each customer’s journey in Asana—from initial engagement up to product payment and closure—and uses conditional logic to trigger personalized email updates whenever a status changes. This system streamlined customer communication, ensured timely updates, and minimized manual follow-ups throughout the sales process.",
       image: projectZapier2,
-      technologies: ["Asana", "Zapier", "Google Mail"]
+      technologies: ["Asana", "Zapier", "Google Mail"],
     },
     {
       name: "Google Forms Data Integration and Archiving Automation (n8n Workflow)",
-      description: "Created an automated data pipeline that connects Google Forms, Google Sheets, Airtable, and a MySQL database using n8n. When a form is submitted, the workflow automatically records the responses in Google Sheets, processes the data through n8n, and seamlessly adds entries to Airtable for active tracking while archiving them in MySQL for long-term storage. This automation improved data consistency, eliminated manual entry, and ensured a reliable, centralized record management process.",
+      description:
+        "Created an automated data pipeline that connects Google Forms, Google Sheets, Airtable, and a MySQL database using n8n. When a form is submitted, the workflow automatically records the responses in Google Sheets, processes the data through n8n, and seamlessly adds entries to Airtable for active tracking while archiving them in MySQL for long-term storage. This automation improved data consistency, eliminated manual entry, and ensured a reliable, centralized record management process.",
       image: projectn8n1,
-      technologies: ["n8n", "Airtable", "Google Sheet", "Google Forms", "MySQL"]
+      technologies: [
+        "n8n",
+        "Airtable",
+        "Google Sheet",
+        "Google Forms",
+        "MySQL",
+      ],
     },
-{
+    {
       name: "AI-Powered Daily Weather Forecast Content Automation",
-      description: "Developed an AI-driven automation that generates and publishes daily weather forecast content for social media. The workflow automatically retrieves weather data, uses AI to create engaging captions and pair them with unique daily quotes and images, and checks whether the selected quote or image has been previously used to avoid repetition. Once validated, it composes and generates the final image post ready for publication. This automation streamlined daily content creation, ensured originality, and maintained consistent social media engagement.",
+      description:
+        "Developed an AI-driven automation that generates and publishes daily weather forecast content for social media. The workflow automatically retrieves weather data, uses AI to create engaging captions and pair them with unique daily quotes and images, and checks whether the selected quote or image has been previously used to avoid repetition. Once validated, it composes and generates the final image post ready for publication. This automation streamlined daily content creation, ensured originality, and maintained consistent social media engagement.",
       image: projectn8n2,
-      technologies: ["Open Weather Map Application Protocol Interface (API)", "Artificial Intelligence", "n8n", ]
-    }
+      technologies: [
+        "Open Weather Map Application Protocol Interface (API)",
+        "Artificial Intelligence",
+        "n8n",
+      ],
+    },
   ];
+  const [selectedTool, setSelectedTool] = useState("All");
+
+  const filteredProjects =
+    selectedTool === "All"
+      ? projects
+      : projects.filter((p) => p.technologies.includes(selectedTool));
 
   return (
-   <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       {/* ✅ Navigation */}
       <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Wil
-          </div>
+<button
+              onClick={() => navigate("/")}
+              className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+            >
+              Wil
+            </button>
           <div className="hidden md:flex gap-6">
-            <button onClick={() => scrollToSection("about")} className="text-foreground hover:text-primary transition-colors">About</button>
+            <button
+              onClick={() => scrollToSection("about")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              About
+            </button>
             {/* <button onClick={() => scrollToSection("experience")} className="text-foreground hover:text-primary transition-colors">Experience</button> */}
-            <button onClick={() => scrollToSection("projects")} className="text-foreground hover:text-primary transition-colors">Projects</button>
-            <button onClick={() => scrollToSection("skills")} className="text-foreground hover:text-primary transition-colors">Skills</button>
+            <button
+              onClick={() => scrollToSection("projects")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Projects
+            </button>
+            <button
+              onClick={() => scrollToSection("skills")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Skills
+            </button>
             {/* <button onClick={() => scrollToSection("education")} className="text-foreground hover:text-primary transition-colors">Education</button> */}
-            <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">Services</button>
-            <button onClick={() => navigate("/contact")} className="text-foreground hover:text-primary transition-colors">Contact</button>
+            <button
+              onClick={() => scrollToSection("services")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Services
+            </button>
+            <button
+              onClick={() => navigate("/contact")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Contact
+            </button>
           </div>
         </div>
       </nav>
@@ -162,23 +255,36 @@ const skills = [
         <div className="container mx-auto max-w-6xl text-center space-y-6">
           <div className="flex justify-center mb-8">
             <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary shadow-[var(--shadow-glow)]">
-              <img src={heroProfile} alt="Wil Lorenz Dagli" className="w-full h-full object-cover" />
+              <img
+                src={heroProfile}
+                alt="Wil Lorenz Dagli"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Wil Lorenz Dagli
           </h1>
-          <p className="text-2xl md:text-3xl text-muted-foreground">Technical Virtual Assistant - AI Automation</p>
+          <p className="text-2xl md:text-3xl text-muted-foreground">
+            Technical Virtual Assistant - AI Automation
+          </p>
           {/* <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
          Experienced in Go, Linux systems, and API integrations.
 Passionate about building robust, scalable, and fully automated solutions that optimize workflows and system performance.
             Passionate about building robust, scalable, and fully automated solutions that optimize workflows and system performance.
           </p> */}
           <div className="flex gap-4 justify-center pt-4">
-            <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90" onClick={() => navigate("/contact")}>
+            <Button
+              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+              onClick={() => navigate("/contact")}
+            >
               Get in Touch
             </Button>
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary/10" onClick={() => scrollToSection("projects")}>
+            <Button
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary/10"
+              onClick={() => scrollToSection("projects")}
+            >
               View Work
             </Button>
           </div>
@@ -192,58 +298,77 @@ Passionate about building robust, scalable, and fully automated solutions that o
             About Me
           </h2>
           <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed">
-            I specialize in automating workflows, managing web systems, and providing technical support for digital operations. My expertise includes integrating tools like n8n, Zapier, Make, CRM and Google Workspace to streamline business processes, manage data efficiently, and enhance productivity. I also assist in maintaining websites, handling API connections, and implementing automation for daily operations. 
-            With a background in backend development, I specialize in diagnosing, debugging, and optimizing server-side logic, databases, and APIs ensuring systems remain secure, efficient, and scalable for clients.
+            I specialize in automating workflows, managing web systems, and
+            providing technical support for digital operations. My expertise
+            includes integrating tools like n8n, Zapier, Make, CRM and Google
+            Workspace to streamline business processes, manage data efficiently,
+            and enhance productivity. I also assist in maintaining websites,
+            handling API connections, and implementing automation for daily
+            operations. With a background in backend development, I specialize
+            in diagnosing, debugging, and optimizing server-side logic,
+            databases, and APIs ensuring systems remain secure, efficient, and
+            scalable for clients.
           </p>
         </div>
       </section>
- {/* Skills Section */}
+      {/* Skills Section */}
       <section id="skills" className="py-20 px-6">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Skills & Language / Tools Used
           </h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-{skills.map((skill, index) => (
-  <Card
-    key={index}
-    className="p-6 bg-card border-border hover:border-primary transition-all duration-300 hover:shadow-[var(--shadow-glow)] cursor-default text-center flex flex-col items-center justify-center gap-3 hover:scale-105"
-  >
-    <div className="w-16 h-16 rounded-xl bg-white/10 dark:bg-white/20 flex items-center justify-center">
-      <img
-        src={skill.img}
-        alt={skill.name}
-        className="w-12 h-12 object-contain"
-      />
-    </div>
-    <p className="text-foreground font-medium text-base mt-1">{skill.name}</p>
-  </Card>
-))}
 
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {skills.map((skill, index) => (
+              <Card
+                key={index}
+                className="p-6 bg-card border-border hover:border-primary transition-all duration-300 hover:shadow-[var(--shadow-glow)] cursor-default text-center flex flex-col items-center justify-center gap-3 hover:scale-105"
+              >
+                <div className="w-16 h-16 rounded-xl bg-white/10 dark:bg-white/20 flex items-center justify-center">
+                  <img
+                    src={skill.img}
+                    alt={skill.name}
+                    className="w-12 h-12 object-contain"
+                  />
+                </div>
+                <p className="text-foreground font-medium text-base mt-1">
+                  {skill.name}
+                </p>
+              </Card>
+            ))}
           </div>
 
           <div className="mt-12 grid md:grid-cols-2 gap-6">
             <Card className="p-6 bg-card border-border">
-              <h3 className="text-xl font-bold text-primary mb-4">Technical Skills</h3>
+              <h3 className="text-xl font-bold text-primary mb-4">
+                Technical Skills
+              </h3>
               <ul className="space-y-2 text-muted-foreground">
                 <ul className="space-x-5 space-y-2 text-muted-foreground">
-                    <li>- <strong>Automation & Integration</strong></li>
-                    <li>• Workflow Automation: Zapier, Make.com, n8n</li>
-                    <li>• AI Tools: ChatGPT, Gemini, Otter.ai, Lovable, Grok</li>
-                    <li>• CRM & API Integrations: Zoho Desk, Twilio SMS, GoHighLevel</li>
+                  <li>
+                    - <strong>Automation & Integration</strong>
+                  </li>
+                  <li>• Workflow Automation: Zapier, Make.com, n8n</li>
+                  <li>• AI Tools: ChatGPT, Gemini, Otter.ai, Lovable, Grok</li>
+                  <li>
+                    • CRM & API Integrations: Zoho Desk, Twilio SMS, GoHighLevel
+                  </li>
                 </ul>
                 <ul className="space-x-5 space-y-2 text-muted-foreground">
-                    <li>- <strong>Programming & Development</strong></li>
-                    <li>• Go (Golang), JavaScript, Python, SQL</li>
-                    <li>• HTML, CSS, API Development & Integration</li>
-                    <li>• RESTful APIs, JSON handling, Web Automation</li>
+                  <li>
+                    - <strong>Programming & Development</strong>
+                  </li>
+                  <li>• Go (Golang), JavaScript, Python, SQL</li>
+                  <li>• HTML, CSS, API Development & Integration</li>
+                  <li>• RESTful APIs, JSON handling, Web Automation</li>
                 </ul>
                 <ul className="space-x-5 space-y-2 text-muted-foreground">
-                    <li>- <strong>Backend & Systems</strong></li>
-                    <li>• Linux Administration (Ubuntu, CentOS)</li>
-                    <li>• Docker & Containerized Environments</li>
-                    <li>• Server Monitoring, Debugging & Optimization</li>
+                  <li>
+                    - <strong>Backend & Systems</strong>
+                  </li>
+                  <li>• Linux Administration (Ubuntu, CentOS)</li>
+                  <li>• Docker & Containerized Environments</li>
+                  <li>• Server Monitoring, Debugging & Optimization</li>
                 </ul>
                 {/* <li>• Critical Thinking / Analytical Skills</li>
                 <li>• Problem Solver</li>
@@ -251,7 +376,9 @@ Passionate about building robust, scalable, and fully automated solutions that o
               </ul>
             </Card>
             <Card className="p-6 bg-card border-border">
-              <h3 className="text-xl font-bold text-secondary mb-4">Soft Skills</h3>
+              <h3 className="text-xl font-bold text-secondary mb-4">
+                Soft Skills
+              </h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li>• Analytical & Critical Thinking</li>
                 <li>• Strong Problem-Solving Abilities</li>
@@ -273,59 +400,30 @@ Passionate about building robust, scalable, and fully automated solutions that o
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Services
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
-{services.map((service, index) => (
-  <Card
-    key={index}
-    className="p-6 bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 flex items-start gap-6"
-  >
-    {/* Icon / Image Section */}
-    <div className="w-16 h-16 rounded-xl bg-white/10 dark:bg-white/20 flex items-center justify-center flex-shrink-0">
-      <img
-        src={service.image}
-        alt={service.title}
-        className="w-10 h-10 object-contain"
-      />
-    </div>
-
-    {/* Text Section */}
-    <div>
-      <h3 className="text-2xl font-bold text-foreground mb-2">{service.title}</h3>
-      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-    </div>
-  </Card>
-))}
-
-          </div>
-        </div>
-      </section>
-
-      
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Featured Projects
-          </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <Card 
+            {services.map((service, index) => (
+              <Card
                 key={index}
-                className="overflow-hidden bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 cursor-pointer"
-                onClick={() => setSelectedProject(project)}
+                className="p-6 bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 flex items-start gap-6"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.name}
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                {/* Icon / Image Section */}
+                <div className="w-16 h-16 rounded-xl bg-white/10 dark:bg-white/20 flex items-center justify-center flex-shrink-0">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-10 h-10 object-contain"
                   />
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2">{project.name}</h3>
-                  <p className="text-muted-foreground text-sm line-clamp-2">{project.description}</p>
+
+                {/* Text Section */}
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
               </Card>
             ))}
@@ -333,8 +431,70 @@ Passionate about building robust, scalable, and fully automated solutions that o
         </div>
       </section>
 
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Featured Projects
+          </h2>
+
+          {/* 🔹 Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {["All", "Make", "Zapier", "n8n"].map((tool) => (
+              <Button
+                key={tool}
+                onClick={() => setSelectedTool(tool)}
+                className={`px-5 py-2 text-sm rounded-full border transition-all ${
+                  selectedTool === tool
+                    ? "bg-gradient-to-r from-primary to-secondary text-white shadow-[var(--shadow-glow)]"
+                    : "bg-card border-border text-muted-foreground hover:text-primary hover:border-primary/40"
+                }`}
+              >
+                {tool}
+              </Button>
+            ))}
+          </div>
+
+          {/* 🔹 Filtered Projects */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProjects.map((project, index) => (
+              <Card
+                key={index}
+                className="overflow-hidden bg-card border-border hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 cursor-pointer"
+                onClick={() => setSelectedProject(project)}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-foreground mb-2">
+                    {project.name}
+                  </h3>
+                  <p className="text-muted-foreground text-sm line-clamp-2">
+                    {project.description}
+                  </p>
+                </div>
+              </Card>
+            ))}
+
+            {/* Fallback when no projects */}
+            {filteredProjects.length === 0 && (
+              <p className="text-muted-foreground text-center col-span-full">
+                No projects found for this tool.
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
       {/* Project Modal */}
-      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+      <Dialog
+        open={!!selectedProject}
+        onOpenChange={() => setSelectedProject(null)}
+      >
         <DialogContent className="max-w-3xl bg-card border-border">
           {selectedProject && (
             <>
@@ -345,8 +505,8 @@ Passionate about building robust, scalable, and fully automated solutions that o
               </DialogHeader>
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden">
-                  <img 
-                    src={selectedProject.image} 
+                  <img
+                    src={selectedProject.image}
                     alt={selectedProject.name}
                     className="w-full h-full object-cover"
                   />
@@ -356,7 +516,7 @@ Passionate about building robust, scalable, and fully automated solutions that o
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.technologies.map((tech, techIndex) => (
-                    <Badge 
+                    <Badge
                       key={techIndex}
                       className="bg-primary/10 text-primary border-primary/20"
                     >
@@ -423,7 +583,6 @@ Passionate about building robust, scalable, and fully automated solutions that o
         </div>
       </section> */}
 
-     
       {/* Education Section */}
       {/* <section id="education" className="py-20 px-6 bg-card/50">
         <div className="container mx-auto max-w-6xl">
@@ -446,26 +605,30 @@ Passionate about building robust, scalable, and fully automated solutions that o
         </div>
       </section> */}
 
-
-
       {/* Footer */}
-      <footer id="contact" className="py-16 px-6 bg-card/50 border-t border-border">
+      <footer
+        id="contact"
+        className="py-16 px-6 bg-card/50 border-t border-border"
+      >
         <div className="container mx-auto max-w-6xl text-center">
           <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Let's Work Together
           </h2>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Have a project in mind or want to discuss opportunities? I'd love to hear from you.
+            Have a project in mind or want to discuss opportunities? I'd love to
+            hear from you.
           </p>
-          <Button 
+          <Button
             className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 mb-12"
             onClick={() => navigate("/contact")}
           >
             Get in Touch
           </Button>
-          
+
           <div className="pt-8 border-t border-border">
-            <p className="text-muted-foreground">© 2025 Wil Lorenz Dagli. All rights reserved.</p>
+            <p className="text-muted-foreground">
+              © 2025 Wil Lorenz Dagli. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
