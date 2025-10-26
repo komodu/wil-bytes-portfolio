@@ -287,6 +287,15 @@ Passionate about building robust, scalable, and fully automated solutions that o
             >
               View Work
             </Button>
+            <a href="https://drive.google.com/file/d/1-D49q-vDNNeGydQ0bX0nAUVAQ46fTlm6/view" className="href">
+            <Button
+
+              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+              
+            >
+              View Resume
+            </Button>
+            </a>
           </div>
         </div>
       </section>
