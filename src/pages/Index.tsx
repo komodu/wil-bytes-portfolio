@@ -287,7 +287,7 @@ Passionate about building robust, scalable, and fully automated solutions that o
             >
               View Work
             </Button>
-            <a href="https://drive.google.com/file/d/1av3S4fG5okyXjEewgLJzs4yzk0PmTfvZ/view?usp=sharing" className="href">
+            <a href="https://drive.google.com/file/d/1d2aLLuQ3ocmAgMJ_UibWA40ericbdqrH/view?usp=sharing" className="href">
             <Button
 
               className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
