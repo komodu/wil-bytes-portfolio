@@ -7,7 +7,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Mail, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import heroProfile from "@/assets/hero-profile.jpeg";
@@ -24,8 +23,12 @@ import projectZapier2 from "@/assets/projects/zapier/zproject2.png";
 import projectn8n1 from "@/assets/projects/n8n/nproject1.png";
 import projectn8n2 from "@/assets/projects/n8n/nproject2.png";
 
+// Web Development Projects
+import calculator_web from "@/assets/projects/web/calculator.png"
+
 const Index = () => {
   const navigate = useNavigate();
+  const [fullImageOpen, setFullImageOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<
     (typeof projects)[0] | null
   >(null);
@@ -137,6 +140,13 @@ const Index = () => {
   ];
 
   const projects = [
+    {
+      name: "Calculator Web Application",
+      description:
+        "Developed an Calculator Web Application.",
+      image: calculator_web,
+      technologies: ["HTML", "JavaScript","CSS"],
+    },
     {
       name: "Auto Sort Attachment to Google Drive",
       description:
@@ -287,7 +297,8 @@ Passionate about building robust, scalable, and fully automated solutions that o
             >
               View Work
             </Button>
-            <a href="https://drive.google.com/file/d/1d2aLLuQ3ocmAgMJ_UibWA40ericbdqrH/view?usp=sharing" className="href">
+            {/* <a href="https://drive.google.com/file/d/1d2aLLuQ3ocmAgMJ_UibWA40ericbdqrH/view?usp=sharing" className="href"> Pink resume*/}
+            <a href="https://drive.google.com/file/d/1av3S4fG5okyXjEewgLJzs4yzk0PmTfvZ/view?usp=sharing" className="href">
             <Button
 
               className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
@@ -295,6 +306,7 @@ Passionate about building robust, scalable, and fully automated solutions that o
             >
               View Resume
             </Button>
+            {/* </a> Pink resume */}
             </a>
           </div>
         </div>
@@ -513,13 +525,16 @@ Passionate about building robust, scalable, and fully automated solutions that o
                 </DialogTitle>
               </DialogHeader>
               <div className="space-y-4">
-                <div className="relative h-64 rounded-lg overflow-hidden">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+<div
+  className="relative w-full max-h-96 rounded-lg overflow-hidden cursor-pointer mx-auto"
+  onClick={() => setFullImageOpen(true)}
+>
+  <img
+    src={selectedProject.image}
+    alt={selectedProject.name}
+    className="max-w-full max-h-96 object-contain mx-auto"
+  />
+</div>
                 <p className="text-muted-foreground leading-relaxed">
                   {selectedProject.description}
                 </p>
@@ -538,6 +553,24 @@ Passionate about building robust, scalable, and fully automated solutions that o
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Dialog for Full Image */}
+<Dialog open={fullImageOpen} onOpenChange={() => setFullImageOpen(false)}>
+  <DialogContent
+    className="p-0 m-0 w-3/4 h-screen max-w-none bg-black flex justify-center items-center overflow-hidden"
+  >
+    {selectedProject && (
+      <img
+        src={selectedProject.image}
+        alt={selectedProject.name}
+        className="w-auto h-auto max-w-full max-h-full object-contain cursor-pointer"
+        onClick={() => setFullImageOpen(false)}
+      />
+    )}
+  </DialogContent>
+</Dialog>
+
+
 
       {/* Experience Section */}
       {/* <section id="experience" className="py-20 px-6 bg-card/50">
