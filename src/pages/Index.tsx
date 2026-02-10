@@ -111,12 +111,12 @@ const Index = () => {
   ];
 
   const services = [
-    {
-      title: "Chatbot Setup",
-      image: "https://www.svgrepo.com/show/361202/hubot.svg",
-      description:
-        "Automate conversations on Chat Applications, or websites with smart chatbots that capture leads.",
-    },
+    // {
+    //   title: "Chatbot Setup",
+    //   image: "https://www.svgrepo.com/show/361202/hubot.svg",
+    //   description:
+    //     "Automate conversations on Chat Applications, or websites with smart chatbots that capture leads.",
+    // },
     {
       title: "CRM Management",
       image: "https://www.svgrepo.com/show/228786/crm-crm.svg",
